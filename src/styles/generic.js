@@ -1,5 +1,4 @@
 import {createGlobalStyle} from 'styled-components'
-import bgpattern from './hideout.svg'
 import normalize from 'normalize.css'
 
 export const GenericStyles = createGlobalStyle`

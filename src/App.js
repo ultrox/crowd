@@ -15,7 +15,7 @@ import {
 function App() {
   const [appName, setAppName] = React.useState('')
   React.useEffect(() => {
-    const result = fetch(process.env.REACT_APP_API)
+    fetch(process.env.REACT_APP_API)
       .then(res => res.json())
       .then(data => setAppName(data.name))
   }, [])
