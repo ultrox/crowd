@@ -5,7 +5,7 @@ function ShortLink() {
 
   function handleOnSubmit(form) {
     const {orgUrl} = form
-    fetch("https://crowd112.herokuapp.com/api" + `/createShortLink/`, {
+    fetch('https://crowd112.herokuapp.com/api' + `/createShortLink/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,9 +28,10 @@ function ShortLink() {
         <input type="url" placeholder="https://google.com" id="orgUrl" />
         <button>Short me</button>
       </form>
-      <div>
-      </div>
-      <pre style={{backgroundColor: 'white'}}>{JSON.stringify(display, null, 2)}</pre>
+      <div></div>
+      <pre style={{backgroundColor: 'white'}}>
+        {JSON.stringify(display, null, 2)}
+      </pre>
     </div>
   )
   return <input />
