@@ -5,7 +5,7 @@ function ShortLink() {
 
   function handleOnSubmit(form) {
     const {orgUrl} = form
-    fetch(process.env.REACT_APP_API + `/createShortLink/`, {
+    fetch("https://crowd112.herokuapp.com/api" + `/createShortLink/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
