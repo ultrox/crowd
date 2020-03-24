@@ -7,7 +7,6 @@ import {
   Switch,
   Route,
   useParams,
-  Link,
 } from 'react-router-dom'
 import ShortLink from './ShortLink'
 
