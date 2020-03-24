@@ -1,8 +1,6 @@
 import React from 'react'
-import logo from './logo.svg'
 import {GenericStyles, AppWrapper, MainWrapper} from 'src/styles'
 import {Main} from 'src/styles/layout'
-import './App.css'
 
 import {
   BrowserRouter as Router,
@@ -11,6 +9,7 @@ import {
   useParams,
   Link,
 } from 'react-router-dom'
+import ShortLink from './ShortLink'
 
 function App() {
   const [appName, setAppName] = React.useState('')
@@ -28,24 +27,8 @@ function App() {
             <Route exact path="/">
               <Main>
                 <div className="App">
-                  <header className="App-header">
-                    <h2 style={{color: 'white'}}>
-                      Connection successuful with {appName}
-                    </h2>
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                      Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <Link to="/123">Go to Random Page</Link>
-                    <a
-                      className="App-link"
-                      href="https://reactjs.org"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Learn React
-                    </a>
-                  </header>
+                  Connection successuful with {appName}
+                  <ShortLink />
                 </div>
               </Main>
             </Route>
