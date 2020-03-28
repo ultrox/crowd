@@ -1,5 +1,6 @@
 import React from 'react'
 import {copyToClipboard} from './helpers'
+import * as api from './api'
 
 function ShortLink() {
   const [display, setDisplay] = React.useState('')
@@ -9,16 +10,15 @@ function ShortLink() {
   }
 
   function handleOnSubmit(form) {
-    const {orgUrl} = form
-    fetch('https://crowd112.herokuapp.com/api' + `/createShortLink/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({orgUrl: orgUrl.value}),
-    })
-      .then(res => res.json())
+    const {orgUrl, customCode} = form
+
+    api
+      .createShortLink(orgUrl.value, customCode)
       .then(resData => setDisplay(resData.data))
+      .catch(err => {
+        // TODO handle err with state
+      })
+
     form.reset()
   }
 
