@@ -1,38 +1,143 @@
-.App {
+:root {
+  font-size: 62.5%;
+  --main-color: #002553;
+  --text-color: #dadada;
+  --button-color: #1075f5;
+  --max-width: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Sen';
+  font-size: 1.6rem;
+  margin: 0;
+  min-width: 325px;
+  width: 100%;
+  height: 100%;
+  background: whitesmoke;
+}
+
+h3,
+p {
+  margin: 0;
+}
+
+.logo-text {
+  font-size: 3.5rem;
+}
+
+.slogan {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  height: 4rem;
+  display: flex;
+  margin-top: 1.5rem;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  padding-left: 0.5rem;
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+.shorten {
+  font-size: 14px;
+  flex: 1;
+  outline: none;
+  border: 0;
+  padding: 0;
+  padding-right: 1rem;
+}
+
+.shorten-action {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 0;
+  padding: 0 1rem;
+  background-color: var(--button-color);
+}
+.shorten-action:hover {
+  background-color: #0f71ec;
+}
+
+header {
+  background-color: var(--main-color);
+  color: whitesmoke;
+  padding: 5rem 0;
+}
+
+.information h4 {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.information {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  margin: auto;
+  margin-top: 2rem;
+  max-width: var(--max-width);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.full-url {
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.info-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  align-items: baseline;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 768px) {
+  .info-content {
+    flex-direction: row;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+.info-content > * {
+  margin-top: 1rem;
+}
+
+.container {
+  width: 100%;
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
   }
 }
