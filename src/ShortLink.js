@@ -1,7 +1,12 @@
 import React from 'react'
+import {copyToClipboard} from './helpers'
 
 function ShortLink() {
   const [display, setDisplay] = React.useState('')
+
+  function copyShortToClip(text) {
+    copyToClipboard(text)
+  }
 
   function handleOnSubmit(form) {
     const {orgUrl} = form
@@ -52,7 +57,12 @@ function ShortLink() {
               <p className="full-url">{display.orgUrl}</p>
               <div className="info-content">
                 <p className="shorted-url">{display.shortLink}</p>
-                <button id="copy">Copy</button>
+                <button
+                  onClick={() => copyShortToClip(display.shortLink)}
+                  id="copy"
+                >
+                  Copy
+                </button>
 
                 {display.visited && (
                   <div className="visited">visited {display.visited}</div>
