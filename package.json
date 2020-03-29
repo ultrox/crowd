@@ -24,7 +24,8 @@
     "prettier:diff": "npm run prettier -- --list-different",
     "format": "npm run prettier -- --write",
     "eject": "react-scripts eject",
-    "validate": "echo ok"
+    "validate": "echo ok",
+    "deploy": "netlify deploy --dir=./build -p"
   },
   "eslintConfig": {
     "extends": "react-app"
