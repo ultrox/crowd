@@ -39,6 +39,7 @@ function ShortLink() {
               }}
             >
               <input
+                autoComplete="off"
                 className="shorten"
                 type="url"
                 placeholder="https://google.com"
