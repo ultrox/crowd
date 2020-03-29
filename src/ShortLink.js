@@ -13,7 +13,7 @@ function ShortLink() {
     const {orgUrl, customCode} = form
 
     api
-      .createShortLink(orgUrl.value, customCode)
+      .createShortLink(orgUrl.value, customCode.value)
       .then(resData => setDisplay(resData.data))
       .catch(err => {
         // TODO handle err with state
@@ -45,6 +45,7 @@ function ShortLink() {
                 placeholder="https://google.com"
                 id="orgUrl"
               />
+              <input id="customCode" placeholder="goog" type="text" />
               <button className="shorten-action">Short</button>
             </form>
           </div>

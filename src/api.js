@@ -1,5 +1,5 @@
-export function createShortLink(url, code = '') {
-  return postData({orgUrl: url, code}, '/createShortLink')
+export function createShortLink(url, customCode = '') {
+  return postData({orgUrl: url, customCode}, '/createShortLink')
 }
 
 
