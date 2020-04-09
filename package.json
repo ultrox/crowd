@@ -25,7 +25,8 @@
     "format": "npm run prettier -- --write",
     "eject": "react-scripts eject",
     "validate": "echo ok",
-    "deploy": "netlify deploy --dir=./build -p"
+    "deploy:netlify": "netlify deploy --dir=./build -p",
+    "deploy": "npm run build && npm run deploy:netlify"
   },
   "eslintConfig": {
     "extends": "react-app"
