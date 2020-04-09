@@ -1,10 +1,11 @@
 import React from 'react'
 import {copyToClipboard} from './helpers'
 import * as api from './api'
+import FlipIcon from 'src/styles/Flip'
+import CompressIcon from 'src/styles/Compress'
 
 function ShortLink() {
   const [display, setDisplay] = React.useState('')
-
   function copyShortToClip(text) {
     copyToClipboard(text)
   }
@@ -38,15 +39,24 @@ function ShortLink() {
                 handleOnSubmit(e.target)
               }}
             >
-              <input
-                autoComplete="off"
-                className="shorten"
-                type="url"
-                placeholder="https://google.com"
-                id="orgUrl"
-              />
-              <input id="customCode" placeholder="goog" type="text" />
-              <button className="shorten-action">Short</button>
+              <div className="short-input">
+                <button type="button" className="flip-button">
+                  <FlipIcon />
+                </button>
+                <input
+                  required
+                  className="shorten"
+                  autoComplete="off"
+                  type="url"
+                  placeholder="https://google.com"
+                  id="orgUrl"
+                />
+
+                <button className="shorten-action">
+                  <CompressIcon className="compress-icon" />
+                </button>
+              </div>
+              {/* <input id="customCode" placeholder="goog" type="text" /> */}
             </form>
           </div>
         </div>

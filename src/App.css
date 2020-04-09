@@ -3,7 +3,14 @@
   --main-color: #002553;
   --text-color: #dadada;
   --button-color: #1075f5;
-  --max-width: 720px;
+  --max-width: 900px;
+  --gray-100: #f4f5f7;
+  --gray-300: #d2d6dc;
+  --gray-400: #9fa6b2;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-800: #252f3f;
+  --gray-900: #161e2e;
 }
 
 * {
@@ -42,37 +49,68 @@ p {
 }
 
 form {
-  height: 4rem;
-  display: flex;
   margin-top: 1.5rem;
-  background: white;
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid #ccc;
-  padding-left: 0.5rem;
   width: 100%;
   max-width: var(--max-width);
 }
 
-.shorten {
-  font-size: 14px;
-  flex: 1;
-  outline: none;
-  border: 0;
-  padding: 0;
-  padding-right: 1rem;
+.short-input {
+  --flip-icon-size: 2.5rem;
+  --flip-margin: 0.5rem;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  align-items: center;
+  display: flex;
+  height: 4rem;
 }
 
+.flip-button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
+
+.flip-button {
+  outline: none;
+  margin: 0 var(--flip-margin);
+  position: absolute;
+  width: var(--flip-icon-size);
+  background: none;
+  color: var(--gray-300);
+}
+
+.flip-button:hover {
+  color: var(--gray-400);
+}
+
+.shorten {
+  flex: 1;
+  font-size: 14px;
+  border: 0;
+  padding: 0;
+  padding-left: calc(var(--flip-icon-size) + calc(var(--flip-margin) * 2));
+  height: 100%;
+}
+
+
 .shorten-action {
+  /* border-radius: 0 var(--border-radius) 0; */
+  width: 5rem;
+  line-height: 0;
+  align-self: stretch;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
   color: white;
   cursor: pointer;
   flex-shrink: 0;
   border: 0;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   background-color: var(--button-color);
 }
+
 .shorten-action:hover {
   background-color: #0f71ec;
 }
