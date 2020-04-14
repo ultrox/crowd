@@ -49,6 +49,7 @@ p {
 }
 
 form {
+  position: relative;
   margin-top: 1.5rem;
   width: 100%;
   max-width: var(--max-width);
@@ -95,7 +96,6 @@ form {
   padding-left: calc(var(--flip-icon-size) + calc(var(--flip-margin) * 2));
   height: 100%;
 }
-
 
 .shorten-action {
   /* border-radius: 0 var(--border-radius) 0; */
@@ -144,6 +144,20 @@ header {
   align-items: baseline;
 }
 
+.error {
+  position: absolute;
+  color: var(--gray-500);
+  text-transform: lowercase;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.error > * + * {
+  margin-left: 0.6rem;
+}
+
 .loading {
   position: absolute;
   top: 0;
@@ -156,6 +170,7 @@ header {
   justify-content: center;
   align-items: center;
 }
+
 @media (min-width: 768px) {
   .info-content {
     flex-direction: row;
