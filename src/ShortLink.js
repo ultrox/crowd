@@ -1,8 +1,7 @@
 import React from 'react'
 import {copyToClipboard, isUrlValid} from './helpers'
 import * as api from './api'
-import FlipIcon from 'src/styles/Flip'
-import CompressIcon from 'src/styles/Compress'
+import {FlipIcon, WarnIcon, CompressIcon} from 'src/styles/Icons'
 
 function ShortLink() {
   const [display, setDisplay] = React.useState('')
@@ -49,9 +48,7 @@ function ShortLink() {
             </p>
             <ShortingForm onShort={handleOnURLShort}>
               <div className="short-input">
-                <button type="button" className="flip-button">
-                  <FlipIcon />
-                </button>
+                <FlipButton onFlip={() => {}} />
                 <input
                   onChange={e => setUrlToShort(e.target.value)}
                   value={shortUrl}
@@ -96,6 +93,15 @@ function ShortLink() {
       </main>
       <div />
     </div>
+  )
+}
+
+
+function FlipButton({onFlip}) {
+  return (
+    <button onClick={onFlip} type="button" className="flip-button">
+      <FlipIcon />
+    </button>
   )
 }
 
