@@ -6,6 +6,7 @@ import CompressIcon from 'src/styles/Compress'
 
 function ShortLink() {
   const [display, setDisplay] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
   function copyShortToClip(text) {
     copyToClipboard(text)
   }
@@ -13,11 +14,15 @@ function ShortLink() {
   function handleOnSubmit(form) {
     const {orgUrl, customCode} = form
 
+    setLoading(true)
     api
       .createShortLink(orgUrl.value, customCode.value)
-      .then(resData => setDisplay(resData.data))
+      .then(resData => {
+        setDisplay(resData.data)
+        setLoading(false)})
       .catch(err => {
         // TODO handle err with state
+        setLoading(false)
       })
 
     form.reset()
@@ -28,6 +33,7 @@ function ShortLink() {
       <header>
         <div className="container">
           <div className="content">
+            <Loading status={loading} />
             <h3 className="logo-text">Crowdly</h3>
             <p className="slogan">
               Simplify your life, wash your hands, and don't memorize links
@@ -87,6 +93,13 @@ function ShortLink() {
       <div />
     </div>
   )
+}
+function Loading({status}) {
+  return status ? (
+    <div className="loading">
+      <p className="loader">Loading...</p>
+    </div>
+  ) : null
 }
 
 export default ShortLink
