@@ -8,6 +8,8 @@ function ShortLink() {
   const [display, setDisplay] = React.useState('')
   const [loading, setLoading] = React.useState(false)
   const [shortUrl, setUrlToShort] = React.useState('')
+  const [error, setError] = React.useState(null)
+  const [urlStatus, setUrlStatusTo] = React.useState(true)
   function copyShortToClip(text) {
     copyToClipboard(text)
   }
@@ -26,9 +28,12 @@ function ShortLink() {
         })
         .catch(err => {
           setLoading(false)
+          setError('api faild')
         })
     } else {
       // url not valid
+      setUrlStatusTo(false)
+      setError('url invalid')
     }
   }
 
@@ -54,7 +59,6 @@ function ShortLink() {
                   <FlipIcon />
                 </button>
                 <input
-                  required
                   onChange={e => setUrlToShort(e.target.value)}
                   value={shortUrl}
                   className="shorten"
@@ -68,7 +72,7 @@ function ShortLink() {
                   <CompressIcon className="compress-icon" />
                 </button>
               </div>
-              {/* <input id="customCode" placeholder="goog" type="text" /> */}
+              {urlStatus ? null : <Error msg={error} />}
             </form>
           </div>
         </div>
@@ -100,6 +104,16 @@ function ShortLink() {
     </div>
   )
 }
+
+function Error({msg}) {
+  return (
+    <div className="error">
+      <WarnIcon color="red" w="19" h="19" />
+      <p>{msg}</p>
+    </div>
+  )
+}
+
 function Loading({status}) {
   return status ? (
     <div className="loading">
