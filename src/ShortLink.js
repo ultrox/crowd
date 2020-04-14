@@ -8,8 +8,11 @@ function ShortLink() {
   const [display, setDisplay] = React.useState('')
   const [loading, setLoading] = React.useState(false)
   const [shortUrl, setUrlToShort] = React.useState('')
+  const [customCode, setCustomCode] = React.useState('')
   const [error, setError] = React.useState(null)
   const [urlStatus, setUrlStatusTo] = React.useState(true)
+  const [mode, setNewMode] = React.useState(false)
+
   function copyShortToClip(text) {
     copyToClipboard(text)
   }
@@ -24,6 +27,7 @@ function ShortLink() {
           setDisplay(resData.data)
           setCustomCode('')
           setUrlToShort('')
+          setNewMode(false)
           setLoading(false)
         })
         .catch(err => {
@@ -47,17 +51,26 @@ function ShortLink() {
             <p className="slogan">{text.slogan}</p>
             <ShortingForm onShort={handleOnURLShort}>
               <div className="short-input">
-                <FlipButton onFlip={() => {}} />
-                <input
-                  onChange={e => setUrlToShort(e.target.value)}
-                  value={shortUrl}
-                  className="shorten"
-                  autoComplete="off"
-                  type="url"
-                  placeholder="http://very-long-url-to-short.com"
-                  id="orgUrl"
-                />
-
+                <FlipButton onFlip={e => setNewMode(m => !m)} />
+                {mode ? (
+                  <input
+                    onChange={e => setCustomCode(e.target.value)}
+                    value={customCode}
+                    className="shorten"
+                    autoComplete="off"
+                    placeholder={text.customCode.placeholder}
+                  />
+                ) : (
+                  <input
+                    onChange={e => setUrlToShort(e.target.value)}
+                    value={shortUrl}
+                    className="shorten"
+                    autoComplete="off"
+                    type="url"
+                    placeholder={text.shortUrl.placeholder}
+                    id="orgUrl"
+                  />
+                )}
                 <button className="shorten-action">
                   <CompressIcon className="compress-icon" />
                 </button>
