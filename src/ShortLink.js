@@ -2,6 +2,7 @@ import React from 'react'
 import {copyToClipboard, isUrlValid} from './helpers'
 import * as api from './api'
 import {FlipIcon, WarnIcon, CompressIcon} from 'src/styles/Icons'
+import text from './text'
 
 function ShortLink() {
   const [display, setDisplay] = React.useState('')
@@ -27,12 +28,12 @@ function ShortLink() {
         })
         .catch(err => {
           setLoading(false)
-          setError('api faild')
+          setError(text.errors.apiFail)
         })
     } else {
       // url not valid
       setUrlStatusTo(false)
-      setError('url invalid')
+      setError(text.errors.urlInvalid)
     }
   }
 
@@ -43,9 +44,7 @@ function ShortLink() {
           <div className="content">
             <Loading status={loading} />
             <h3 className="logo-text">Crowdly</h3>
-            <p className="slogan">
-              Simplify your life, wash your hands, and don't memorize links
-            </p>
+            <p className="slogan">{text.slogan}</p>
             <ShortingForm onShort={handleOnURLShort}>
               <div className="short-input">
                 <FlipButton onFlip={() => {}} />
