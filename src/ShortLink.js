@@ -1,5 +1,5 @@
 import React from 'react'
-import {copyToClipboard} from './helpers'
+import {copyToClipboard, isUrlValid} from './helpers'
 import * as api from './api'
 import FlipIcon from 'src/styles/Flip'
 import CompressIcon from 'src/styles/Compress'
@@ -7,25 +7,29 @@ import CompressIcon from 'src/styles/Compress'
 function ShortLink() {
   const [display, setDisplay] = React.useState('')
   const [loading, setLoading] = React.useState(false)
+  const [shortUrl, setUrlToShort] = React.useState('')
   function copyShortToClip(text) {
     copyToClipboard(text)
   }
 
-  function handleOnSubmit(form) {
-    const {orgUrl, customCode} = form
-
-    setLoading(true)
-    api
-      .createShortLink(orgUrl.value, customCode.value)
-      .then(resData => {
-        setDisplay(resData.data)
-        setLoading(false)})
-      .catch(err => {
-        // TODO handle err with state
-        setLoading(false)
-      })
-
-    form.reset()
+  function handleOnSubmit() {
+    if (isUrlValid(shortUrl)) {
+      setUrlStatusTo(true)
+      setLoading(true)
+      api
+        .createShortLink(shortUrl, customCode)
+        .then(resData => {
+          setDisplay(resData.data)
+          setCustomCode('')
+          setUrlToShort('')
+          setLoading(false)
+        })
+        .catch(err => {
+          setLoading(false)
+        })
+    } else {
+      // url not valid
+    }
   }
 
   return (
@@ -51,6 +55,8 @@ function ShortLink() {
                 </button>
                 <input
                   required
+                  onChange={e => setUrlToShort(e.target.value)}
+                  value={shortUrl}
                   className="shorten"
                   autoComplete="off"
                   type="url"
