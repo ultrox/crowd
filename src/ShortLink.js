@@ -14,7 +14,7 @@ function ShortLink() {
     copyToClipboard(text)
   }
 
-  function handleOnSubmit() {
+  function handleOnURLShort() {
     if (isUrlValid(shortUrl)) {
       setUrlStatusTo(true)
       setLoading(true)
@@ -47,13 +47,7 @@ function ShortLink() {
             <p className="slogan">
               Simplify your life, wash your hands, and don't memorize links
             </p>
-            <form
-              method="POST"
-              onSubmit={e => {
-                e.preventDefault()
-                handleOnSubmit(e.target)
-              }}
-            >
+            <ShortingForm onShort={handleOnURLShort}>
               <div className="short-input">
                 <button type="button" className="flip-button">
                   <FlipIcon />
@@ -64,7 +58,7 @@ function ShortLink() {
                   className="shorten"
                   autoComplete="off"
                   type="url"
-                  placeholder="https://google.com"
+                  placeholder="http://very-long-url-to-short.com"
                   id="orgUrl"
                 />
 
@@ -73,7 +67,7 @@ function ShortLink() {
                 </button>
               </div>
               {urlStatus ? null : <Error msg={error} />}
-            </form>
+            </ShortingForm>
           </div>
         </div>
       </header>
@@ -102,6 +96,20 @@ function ShortLink() {
       </main>
       <div />
     </div>
+  )
+}
+
+function ShortingForm({onShort, children}) {
+  return (
+    <form
+      method="POST"
+      onSubmit={e => {
+        e.preventDefault()
+        onShort(e.target)
+      }}
+    >
+      {children}
+    </form>
   )
 }
 
